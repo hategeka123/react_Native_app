@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { View, StyleSheet, Image } from "react-native";
+import LinearGradient from 'react-native-web-linear-gradient';
 import { SafeAreaView } from "react-navigation";
 import SearchBar from "../../components/InputFields/SearchBar";
 import TopCategory from "../../components/TopCategoryList";
@@ -57,14 +58,229 @@ const HomeScreen = ({ navigation }) => {
             <Image style={styles.imgIcon} source={HambarIcon} />
           </TouchableOpacity>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
           <TopCategory style={styles.topCategory} />
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.choiceView}>
             <Text h4 style={styles.choiceText}>
               Top Products
             </Text>
           </View>
+          <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{height:400}}
+      >
+        <LinearGradient
+        colors={["rgba(0,164,109,0.09)", "transparent"]}
+        style={{
+          position:"absolute",
+          left:0,
+          right:0,
+          height:100,
+          marginTop:220,
+          top:0,
+        }}
+        />
+        <View
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+              source={require("../../images/ikweto.jpg")}
+              style={{height:140, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Nike</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>40000Frw</Text>
+          </View>
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Rassia</Text>
+            <Text 
+              onPress={() =>navigation.navigate('Order')}
+            style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+        </View>
+
+        <View
+           
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+              source={require("../../images/kadashian.jpg")}
+              style={{height:140, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Kadash</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>80000Frw</Text>
+          </View>
+
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Amercan</Text>
+            <Text 
+            onPress={() =>navigation.navigate('OrderProduct')}
+            style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+          
+        </View>
+        <View
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+
+              source={require("../../images/dress2.jpg")}
+              style={{height:150, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>dress</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>15000Frw</Text>
+          </View>
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Amercan</Text>
+            <Text 
+              onPress={() =>navigation.navigate('OrderProduct')}
+            style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+        </View>
+        <View
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+              source={require("../../images/dress1.jpg")}
+              style={{height:150, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Dress</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>20000Frw</Text>
+          </View>
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Amercan</Text>
+            <Text
+              onPress={() =>navigation.navigate('OrderProduct')} 
+             style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+        </View>
+      </ScrollView>
           {restaurants == undefined ? (
+        
             <View
               style={{
                 height: 240,
@@ -73,7 +289,9 @@ const HomeScreen = ({ navigation }) => {
                 backgroundColor: "#D6D6D6",
                 alignSelf: "center",
               }}
-            />
+            >
+              
+            </View>
           ) : (
             <TopRestaurants
               restaurants={restaurants}
@@ -81,14 +299,15 @@ const HomeScreen = ({ navigation }) => {
               horizontal={true}
               didSelectItem={didSelectRestaurant}
             />
-          )}
+          )} 
 
           <View style={styles.choiceView}>
             <Text h4 style={styles.choiceText}>
               New Products
             </Text>
           </View>
-          {foods == undefined ? (
+         
+          {/* {foods == undefined ? ( */}
             <View
               style={{
                 height: 240,
@@ -97,15 +316,231 @@ const HomeScreen = ({ navigation }) => {
                 backgroundColor: "#D6D6D6",
                 alignSelf: "center",
               }}
-            />
-          ) : (
+            >
+             <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{height:400}}
+      >
+        <LinearGradient
+        colors={["rgba(0,164,109,0.09)", "transparent"]}
+        style={{
+          position:"absolute",
+          left:0,
+          right:0,
+          height:100,
+          marginTop:220,
+          top:0,
+        }}
+        />
+        <View
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+              source={require("../../images/ikweto.jpg")}
+              style={{height:140, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Nike</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>40000Frw</Text>
+          </View>
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Rassia</Text>
+            <Text 
+              onPress={() =>navigation.navigate('Order')}
+            style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+        </View>
+
+        <View
+           
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+              source={require("../../images/kadashian.jpg")}
+              style={{height:140, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Kadash</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>80000Frw</Text>
+          </View>
+
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Amercan</Text>
+            <Text 
+            onPress={() =>navigation.navigate('OrderProduct')}
+            style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+          
+        </View>
+        <View
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+              source={require("../../images/dress2.jpg")}
+              style={{height:150, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>dress</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>15000Frw</Text>
+          </View>
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Amercan</Text>
+            <Text 
+              onPress={() =>navigation.navigate('OrderProduct')}
+            style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+        </View>
+        <View
+          style={{
+            height:250,
+            elevation:2,
+            backgroundColor:"grey",
+            marginLeft:20,
+            marginTop:20,
+            borderRadius:20,
+            marginBottom:10,
+            width:160,
+          }}
+        >
+          <Image
+              source={require("../../images/dress1.jpg")}
+              style={{height:150, width:160, borderRadius:15}}
+          />
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Dress</Text>
+            <Text style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>20000Frw</Text>
+          </View>
+          <View style={{
+            flexDirection:"row",
+            paddingTop:10,
+            paddingHorizontal:10,
+          }}>
+            <Text style={{
+              fontWeight:"bold"
+            }}>Amercan</Text>
+            <Text
+              onPress={() =>navigation.navigate('OrderProduct')} 
+             style={{
+              fontWeight:"bold",
+              color:"#FFF",
+              paddingLeft:35,
+            }}>Detail</Text>
+          </View>
+          
+        </View>
+      </ScrollView>
+              </View>
+               
+
+          {/* ) : (
             <TopFoodList
               foods={foods}
               size={"medium"}
               horizontal={true}
               didSelectItem={didSelectItem}
             />
-          )}
+          )} */}
         </ScrollView>
       </View>
     </SafeAreaView>

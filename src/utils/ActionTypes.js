@@ -5,6 +5,7 @@ const Action = {
   SIGNUP: "signup",
   DISSMISS: "dismiss",
 
+  ADD_PRODUCT:"ADD_PRODUCT",
   ALL_FOODS: "view_all",
   TOP_RESTAURANTS: "top_restaurants",
   VIEW_CART: "view_cart",

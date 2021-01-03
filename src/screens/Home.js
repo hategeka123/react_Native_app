@@ -5,7 +5,9 @@ import {
     StyleSheet,
     Image,
     ImageBackground
+
     } from "react-native";
+import LinearGradient from 'react-native-web-linear-gradient';
 import { TextInput, ScrollView, TouchableOpacity } from "react-native-gesture-handler";        
 const Home = ({ navigation }) => {
   return(
@@ -49,7 +51,7 @@ const Home = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <linearGradient
+      <LinearGradient
        colors={["green"]}
        style={{
          left:0,
@@ -82,7 +84,7 @@ const Home = ({ navigation }) => {
            style={{height:20, width:20}}
        />
       </View>
-    </linearGradient>
+    </LinearGradient>
 
       <View style={{
         flexDirection:"row",
@@ -132,7 +134,7 @@ const Home = ({ navigation }) => {
         showsHorizontalScrollIndicator={false}
         style={{height:400}}
       >
-        <linearGradient
+        <LinearGradient
         colors={["rgba(0,164,109,0.09)", "transparent"]}
         style={{
           position:"absolute",
@@ -304,7 +306,7 @@ const Home = ({ navigation }) => {
           }}
         >
           <Image
-              source={require("../images/dress1.jpg")}
+              source={require("../images/lunch.jpg")}
               style={{height:150, width:160, borderRadius:15}}
           />
           <View style={{
@@ -340,19 +342,19 @@ const Home = ({ navigation }) => {
           
         </View>
       </ScrollView>
-        <View>
+        {/* <View>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             style ={{marginTop:-100}}
           >
             <Image
-            source={require("../images/dress1.jpg")}
+            source={require("../images/lunch.jpg")}
             style={{marginTop:20, marginHorizontal:4}}
             />
             
           </ScrollView>
-        </View>
+        </View> */}
     </View>
    
   )

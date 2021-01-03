@@ -93,6 +93,31 @@ const onViewOrderDetails = (dispatch) => ({ _id }) => {
     });
 };
 
+const addProduct = (dispatch) => async ({
+  name,
+  description,
+  price,
+  images,
+}) => {
+  API.post("seller/upload-product", {
+    name,
+    description,
+    price,
+    images,
+  })
+    .then((response) => {
+      configureAPI({ token: `Bearer ${response.data}` });
+      dispatch({ type: aType.ADD_PRODUCT, payload: response.data });
+      navigate("homeStack");
+    })
+    .catch((err) => {
+      dispatch({
+        type: aType.ERROR,
+        payload: "Login Fail with provided Email ID and Password",
+      });
+    });
+};
+
 const onSignup = (dispatch) => async ({
   email,
   password,
@@ -175,6 +200,7 @@ export const { Provider, Context } = createAppContext(
   {
     onCheckAvailability,
     onCheckLogin,
+    addProduct,
     onSignup,
     onSignin,
     onLogout,

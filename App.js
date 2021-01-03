@@ -45,13 +45,13 @@ const switchNavigator = createSwitchNavigator({
         tabBarIcon: ({ focused, tintColor }) => {
           let icon =
             focused == true
-              ? require('./src/images/home_icon.png')
-              : require('./src/images/home_n_icon.png');
+              ? require('./src/images/homeIcon.png')
+              : require('./src/images/homeIcon.png');
           return <Image source={icon} style={styles.tabIcon} />;
         },
       },
     },
-    Offer: {
+    Upload: {
       screen: OfferScreen,
       navigationOptions: {
         tabBarOptions: {
@@ -60,8 +60,8 @@ const switchNavigator = createSwitchNavigator({
         tabBarIcon: ({ focused, tintColor }) => {
           let icon =
             focused == true
-              ? require('./src/images/offer_icon.png')
-              : require('./src/images/offer_n_icon.png');
+              ? require('./src/images/iconPlus.jpg')
+              : require('./src/images/iconPlus.jpg');
           return <Image source={icon} style={styles.tabIcon} />;
         },
       },
