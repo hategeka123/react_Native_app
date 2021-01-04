@@ -22,7 +22,7 @@ const CartItem = ({ data, onAddItem, onRemoveItem }) => {
       <View style={styles.productInfo}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.resturentTitle}>
-          {category.toString().toUpperCase()}
+          {/* {category.toString().toUpperCase()} */}
         </Text>
         <Text style={styles.foodDescription}>{description}</Text>
       </View>

@@ -62,7 +62,7 @@ const FoodCard = ({
         <View style={smallStyles.productInfo}>
           <Text style={smallStyles.title}>{name}</Text>
           <Text style={smallStyles.resturentTitle}>
-            {category.toString().toUpperCase()}
+            {/* {category.toString().toUpperCase()} */}
           </Text>
           <Rating
             style={smallStyles.rating}

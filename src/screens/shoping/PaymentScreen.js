@@ -39,7 +39,7 @@ const PaymentScreen = ({ navigation }) => {
       <View style={styles.bottomView}>
         <View style={styles.amountDetails}>
           <Text style={{ fontSize: 18 }}> Total</Text>
-          <Text style={{ fontSize: 18, fontWeight: "600" }}> $200.00</Text>
+          <Text style={{ fontSize: 18, fontWeight: "600" }}> frw200.00</Text>
         </View>
         <AppButton title="Order Now" onTap={didTapOrderNow} />
       </View>
