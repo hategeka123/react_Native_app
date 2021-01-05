@@ -10,6 +10,8 @@ import userReducer from "./reducer";
  */
 
 const onCheckAvailability = (dispatch) => async () => {
+  const userToken = await AsyncStorage.getItem()
+  console.log(userToken)
   try {
     const response = await API.get("/food");
     dispatch({ type: aType.ALL_FOODS, payload: response.data });
@@ -28,7 +30,11 @@ const fetchTopRestaurants = (dispatch) => async () => {
 };
 
 const onViewCart = (dispatch) => () => {
-  API.get("/user/cart")
+  API.get("/user/cart",{
+    headers: {
+      'Authorization': 'Bearer 4ccb81ac-f4de-4012-85f2-3a07b79b8c9f'
+    }
+  })
     .then((response) => {
       dispatch({ type: aType.VIEW_CART, payload: response.data });
     })
@@ -41,7 +47,13 @@ const onAddToCart = (dispatch) => (item, qty) => {
   console.log(item);
 
   if (qty !== undefined) {
-    API.put(`/user/cart/${item._id}/${qty}`)
+    fetch(`https://online-selling-backend.herokuapp.com/user/cart/user/cart/${item._id}/${qty}`, {
+    method: "PUT",
+    headers: {
+      'Authorization': 'Bearer 4ccb81ac-f4de-4012-85f2-3a07b79b8c9f'
+    }
+  })
+    // API.put(`/user/cart/${item._id}/${qty}`)
       .then((response) => {
         console.log(response);
         dispatch({ type: aType.VIEW_CART, payload: response.data });
@@ -50,7 +62,13 @@ const onAddToCart = (dispatch) => (item, qty) => {
         dispatch({ type: aType.ERROR, payload: "Data Not found" + err });
       });
   } else {
-    API.post("/user/cart/" + item._id)
+    fetch(`https://online-selling-backend.herokuapp.com/user/cart/user/cart/${item._id}`, {
+    method: "POST",
+    headers: {
+      'Authorization': 'Bearer 4ccb81ac-f4de-4012-85f2-3a07b79b8c9f'
+    }
+  })
+    // API.post("/user/cart/" + item._id)
       .then((response) => {
         console.log(response);
         dispatch({ type: aType.VIEW_CART, payload: response.data });

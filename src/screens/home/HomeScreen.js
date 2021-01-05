@@ -10,7 +10,7 @@ import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import HambarIcon from "../../images/hambar.png";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "react-native-elements";
-
+import AppButton from "../../components/Buttons/AppButton";
 //Context
 import { Context as UserContext } from "../../dataStore/userAccessContext";
 import TopRestaurants from "../foods/TopRestaurants";
@@ -110,6 +110,11 @@ const HomeScreen = ({ navigation }) => {
               color:"#FFF",
               paddingLeft:35,
             }}>40000Frw</Text>
+            {/* <AppButton
+              title="Add"
+              width={70}
+              onTap={() => alert("added")}
+            /> */}
           </View>
           <View style={{
             flexDirection:"row",

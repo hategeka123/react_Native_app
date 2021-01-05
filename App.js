@@ -29,6 +29,7 @@ import OrderDetailScreen from './src/screens/shoping/OrderDetails';
 import PaymentScreen from './src/screens/shoping/PaymentScreen';
 import FoodDetails from './src/screens/foods/FoodDetails';
 import RestaurantDetailScreen from './src/screens/foods/RestaurantDetails';
+import changeRole from './src/screens/changeRole';
 
 const switchNavigator = createSwitchNavigator({
   authCheck: AuthCheckScreen,
@@ -108,6 +109,7 @@ const switchNavigator = createSwitchNavigator({
     screen: createStackNavigator({
       WellCome: Home,
       User: userScreen,
+      ChangeRole: changeRole,
       Reports: reportScreen,
       Payment: PaymentScreen,
       Signin: SigninScreen,

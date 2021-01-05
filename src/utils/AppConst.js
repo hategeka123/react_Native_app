@@ -1,3 +1,3 @@
-exports.urlImage = (img) => {
-  return `https://online-selling-backend.herokuapp.com/images/${img}`;
+exports.urlImage = (id) => {
+  return `https://online-selling-backend.herokuapp.com/user/cart/${id}`;
 };

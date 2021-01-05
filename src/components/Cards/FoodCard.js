@@ -26,13 +26,14 @@ const FoodCard = ({
   cartItems,
 }) => {
   const { item } = data;
-
+  const myArray = []
+console.log(myArray)
   const { _id, name, images, description, price, readyTime, category } = item;
 
   let isAdded = false;
   let currentQty = 1;
 
-  let image = urlImage(images[0]);
+  let image = urlImage(_id);
 
   const didAddItem = () => {
     onAddToCart();
@@ -85,7 +86,8 @@ const FoodCard = ({
             <AppButton
               title="Add"
               width={70}
-              onTap={() => onAddToCart(data.item)}
+              onPress={() => myArray.push(data.item)}
+              onTap={() => onAddToCart(data.item, 1)}
             />
           )}
 
