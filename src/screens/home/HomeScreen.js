@@ -377,7 +377,7 @@ const HomeScreen = ({ navigation }) => {
               fontWeight:"bold"
             }}>Rassia</Text>
             <Text 
-              onPress={() =>navigation.navigate('Order')}
+              onPress={() =>navigation.navigate('cart')}
             style={{
               fontWeight:"bold",
               color:"#FFF",

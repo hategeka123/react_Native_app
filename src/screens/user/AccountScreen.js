@@ -37,7 +37,7 @@ const AccountScreen = () => {
           </View>
         </TouchableOpacity>
         {/* View Payment Methods */}
-        <TouchableOpacity onPress={() => navigate("Payment")}>
+        <TouchableOpacity onPress={() => navigate(" Search")}>
           <View style={styles.options}>
             <Text style={styles.optionsText}>Payment</Text>
             <Image source={ArrowIcon} style={styles.icon} />

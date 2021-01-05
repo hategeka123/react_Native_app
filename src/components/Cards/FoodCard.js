@@ -87,7 +87,7 @@ console.log(myArray)
               title="Add"
               width={70}
               onPress={() => myArray.push(data.item)}
-              onTap={() => onAddToCart(data.item, 1)}
+              onTap={() => onAddToCart(data.item)}
             />
           )}
 
