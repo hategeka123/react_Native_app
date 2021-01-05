@@ -15,6 +15,8 @@ import { Provider as UserProvider } from './src/dataStore/userAccessContext';
 import Home from './src/screens/Home';
 import AuthCheckScreen from './src/screens/AuthCheckScreen';
 import AccountScreen from './src/screens/user/AccountScreen';
+import userScreen from "./src/screens/userScreen"
+import reportScreen from "./src/screens/reportScreen"
 import HomeScreen from './src/screens/home/HomeScreen';
 import CartScreen from './src/screens/shoping/CartScreen';
 import OfferScreen from './src/screens/home/OffersScreen';
@@ -105,6 +107,9 @@ const switchNavigator = createSwitchNavigator({
   loginStack: {
     screen: createStackNavigator({
       WellCome: Home,
+      User: userScreen,
+      Reports: reportScreen,
+      Payment: PaymentScreen,
       Signin: SigninScreen,
       Signup: SignupScreen,
     }),

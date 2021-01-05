@@ -73,7 +73,7 @@ const FoodCard = ({
           />
         </View>
         <View style={smallStyles.shopView}>
-          <Text style={smallStyles.productSize}>₹{price}</Text>
+          <Text style={smallStyles.productSize}>Frws{price}</Text>
           {cartItems !== undefined &&
             cartItems.map((item) => {
               if (item.food._id.toString() === _id.toString()) {

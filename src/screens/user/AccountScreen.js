@@ -37,23 +37,23 @@ const AccountScreen = () => {
           </View>
         </TouchableOpacity>
         {/* View Payment Methods */}
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => navigate("Payment")}>
           <View style={styles.options}>
-            <Text style={styles.optionsText}>Payment Options</Text>
+            <Text style={styles.optionsText}>Payment</Text>
             <Image source={ArrowIcon} style={styles.icon} />
           </View>
         </TouchableOpacity>
         {/* Edit Profile */}
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => navigate("Reports")}>
           <View style={styles.options}>
-            <Text style={styles.optionsText}>Edit Profile</Text>
+            <Text style={styles.optionsText}>Reports</Text>
             <Image source={ArrowIcon} style={styles.icon} />
           </View>
         </TouchableOpacity>
         {/* Contact Us */}
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => navigate("User")}>
           <View style={styles.options}>
-            <Text style={styles.optionsText}>Contact Support</Text>
+            <Text style={styles.optionsText}>User</Text>
             <Image source={ArrowIcon} style={styles.icon} />
           </View>
         </TouchableOpacity>
