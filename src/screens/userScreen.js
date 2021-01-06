@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { navigate } from '../utils/NavigationRef';
  
 export default function App() {
@@ -25,6 +25,7 @@ alert(id)
     <View style={styles.container}>
       {isloading ? <Text>Is Loading ... </Text> : (
       <View style={{ flex: 1, flexDirection: 'column', marginTop:20, justifyContent:  'center'}}>
+      <ScrollView vertocal={true}>
           {data.users.map((user, index) => (
             <View key={index} style={styles.singleUser}>
           <Text style={{marginBottom:10, fontSize:20}}>Names: {user.firstName}{ user.lastName}</Text>
@@ -34,12 +35,13 @@ alert(id)
           </View>
           ))}
     
-         
+         </ScrollView>
         </View>
         )}
     </View>
   );
 }
+
  
 const styles = StyleSheet.create({
   container: {

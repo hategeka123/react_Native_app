@@ -26,8 +26,6 @@ const FoodCard = ({
   cartItems,
 }) => {
   const { item } = data;
-  const myArray = []
-console.log(myArray)
   const { _id, name, images, description, price, readyTime, category } = item;
 
   let isAdded = false;

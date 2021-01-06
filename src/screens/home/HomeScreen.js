@@ -1,596 +1,273 @@
-import React, { useContext, useEffect } from "react";
-import { View, StyleSheet, Image } from "react-native";
-import LinearGradient from 'react-native-web-linear-gradient';
-import { SafeAreaView } from "react-navigation";
-import SearchBar from "../../components/InputFields/SearchBar";
-import TopCategory from "../../components/TopCategoryList";
-import TopFoodList from "../../components/Listview/ProductListView";
-import { navigate } from "../../utils/NavigationRef";
-import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
-import HambarIcon from "../../images/hambar.png";
-import { Ionicons } from "@expo/vector-icons";
-import { Text } from "react-native-elements";
+import React, {useEffect,useState} from "react";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView
+} from "react-native";
+
+import { Text, Rating } from "react-native-elements";
 import AppButton from "../../components/Buttons/AppButton";
-//Context
-import { Context as UserContext } from "../../dataStore/userAccessContext";
-import TopRestaurants from "../foods/TopRestaurants";
+// import ButtonAddRemove from "../Buttons/AddRemoveButton";
 
-const HomeScreen = ({ navigation }) => {
-  const { state, onCheckAvailability, fetchTopRestaurants } = useContext(
-    UserContext
-  );
+import { urlImage } from "../../utils/AppConst";
 
-  const { foods, restaurants } = state;
+const deviceWidth = Math.round(Dimensions.get("window").width);
 
-  /**
-   * LifeCycle Methoda
-   */
+const Homescreen = ({size, onAddToCart}) => {
+  const didAddItem = () => {
+    onAddToCart();
+  };
+
+  const didRemoveItem = () => {};
+
+
+
+
+const  [data, setData] = useState([])
+  // const  [isloading, setIsLoading] = useState(true)
+
+
+const handleChangeRole = (id) => {
+alert(id)
+}
   useEffect(() => {
-    fetchTopRestaurants();
-    onCheckAvailability();
-  }, []);
+    fetch("https://online-selling-backend.herokuapp.com/food")
+    .then((res) => res.json())
+    .then((json) =>{
+      console.log(json)
+      setData(json)
+    })
+    .catch((error)=> console.log(error))
+  },[])
 
-  /**
-   * USER Actions
-   */
-  const didTapOptions = () => {
-    // console.log("Show Options");
-  };
-
-  const goToSearchPage = () => {
-    navigate("Search");
-  };
-
-  const didSelectItem = (item) => {
-    navigate("ProductDetail", item);
-  };
-
-  const didSelectRestaurant = (item) => {
-    navigate("RestaurantDetail", item);
-  };
-
-  return (
-    <SafeAreaView forceInset={{ top: "always" }}>
-      <View>
-        <View style={styles.searchOptions}>
-          <SearchBar didTouch={() => goToSearchPage()} isHome={true} />
-          <TouchableOpacity onPress={() => didTapOptions()}>
-            <Image style={styles.imgIcon} source={HambarIcon} />
-          </TouchableOpacity>
-        </View>
-          <TopCategory style={styles.topCategory} />
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.choiceView}>
-            <Text h4 style={styles.choiceText}>
-              Top Products
-            </Text>
-          </View>
-          <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={{height:400}}
-      >
-        <LinearGradient
-        colors={["rgba(0,164,109,0.09)", "transparent"]}
-        style={{
-          position:"absolute",
-          left:0,
-          right:0,
-          height:100,
-          marginTop:220,
-          top:0,
-        }}
-        />
-        <View
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-              source={require("../../images/ikweto.jpg")}
-              style={{height:140, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Nike</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>40000Frw</Text>
-            {/* <AppButton
-              title="Add"
-              width={70}
-              onTap={() => alert("added")}
-            /> */}
-          </View>
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Rassia</Text>
-            <Text 
-              onPress={() =>navigation.navigate('Order')}
-            style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-        </View>
-
-        <View
-           
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-              source={require("../../images/kadashian.jpg")}
-              style={{height:140, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Kadash</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>80000Frw</Text>
-          </View>
-
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Amercan</Text>
-            <Text 
-            onPress={() =>navigation.navigate('OrderProduct')}
-            style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-          
-        </View>
-        <View
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-
-              source={require("../../images/dress2.jpg")}
-              style={{height:150, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>dress</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>15000Frw</Text>
-          </View>
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Amercan</Text>
-            <Text 
-              onPress={() =>navigation.navigate('OrderProduct')}
-            style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-        </View>
-        <View
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-              source={require("../../images/dress1.jpg")}
-              style={{height:150, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Dress</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>20000Frw</Text>
-          </View>
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Amercan</Text>
-            <Text
-              onPress={() =>navigation.navigate('OrderProduct')} 
-             style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-        </View>
-      </ScrollView>
-          {restaurants == undefined ? (
-        
-            <View
-              style={{
-                height: 240,
-                width: "95%",
-                borderRadius: 20,
-                backgroundColor: "#D6D6D6",
-                alignSelf: "center",
-              }}
-            >
-              
-            </View>
-          ) : (
-            <TopRestaurants
-              restaurants={restaurants}
-              size={"medium"}
-              horizontal={true}
-              didSelectItem={didSelectRestaurant}
-            />
-          )} 
-
-          <View style={styles.choiceView}>
-            <Text h4 style={styles.choiceText}>
-              New Products
-            </Text>
-          </View>
-         
-          {/* {foods == undefined ? ( */}
-            <View
-              style={{
-                height: 240,
-                width: "95%",
-                borderRadius: 20,
-                backgroundColor: "#D6D6D6",
-                alignSelf: "center",
-              }}
-            >
-             <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={{height:400}}
-      >
-        <LinearGradient
-        colors={["rgba(0,164,109,0.09)", "transparent"]}
-        style={{
-          position:"absolute",
-          left:0,
-          right:0,
-          height:100,
-          marginTop:220,
-          top:0,
-        }}
-        />
-        <View
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-              source={require("../../images/ikweto.jpg")}
-              style={{height:140, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Nike</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>40000Frw</Text>
-          </View>
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Rassia</Text>
-            <Text 
-              onPress={() =>navigation.navigate('cart')}
-            style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-        </View>
-
-        <View
-           
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-              source={require("../../images/kadashian.jpg")}
-              style={{height:140, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Kadash</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>80000Frw</Text>
-          </View>
-
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Amercan</Text>
-            <Text 
-            onPress={() =>navigation.navigate('OrderProduct')}
-            style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-          
-        </View>
-        <View
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-              source={require("../../images/dress2.jpg")}
-              style={{height:150, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>dress</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>15000Frw</Text>
-          </View>
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Amercan</Text>
-            <Text 
-              onPress={() =>navigation.navigate('OrderProduct')}
-            style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-        </View>
-        <View
-          style={{
-            height:250,
-            elevation:2,
-            backgroundColor:"grey",
-            marginLeft:20,
-            marginTop:20,
-            borderRadius:20,
-            marginBottom:10,
-            width:160,
-          }}
-        >
-          <Image
-              source={require("../../images/dress1.jpg")}
-              style={{height:150, width:160, borderRadius:15}}
-          />
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Dress</Text>
-            <Text style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>20000Frw</Text>
-          </View>
-          <View style={{
-            flexDirection:"row",
-            paddingTop:10,
-            paddingHorizontal:10,
-          }}>
-            <Text style={{
-              fontWeight:"bold"
-            }}>Amercan</Text>
-            <Text
-              onPress={() =>navigation.navigate('OrderProduct')} 
-             style={{
-              fontWeight:"bold",
-              color:"#FFF",
-              paddingLeft:35,
-            }}>Detail</Text>
-          </View>
-          
-        </View>
-      </ScrollView>
+  const mediumCard = () => {
+    return (
+      <View style={styles.root}>
+        <ScrollView vertocal={true}>
+        {data.map((food) => (
+          <View style={styles.foodCard}>
+              <View style={styles.imageCard}></View>
+              <View style={styles.foodImageSmall}>
+              <Text style={styles.title}>{food.name}</Text>
+              <Text style={styles.title}>{food.price}Rw</Text>   
               </View>
-               
-
-          {/* ) : (
-            <TopFoodList
-              foods={foods}
-              size={"medium"}
-              horizontal={true}
-              didSelectItem={didSelectItem}
-            />
-          )} */}
+              <View>
+                  <AppButton
+                  onPress={ () => this.submitNewCustomer()}
+                  title="Add"
+                  width={70}
+                  // onPress={() => navigate("Order")}
+                  // onTap={() => onAddToCart(data.item)}
+                />
+              </View>
+          </View>
+        ))}
         </ScrollView>
       </View>
-    </SafeAreaView>
-  );
+    );
+  };
+
+  const smallCard = () => {
+    return (
+      
+      <TouchableOpacity
+        style={smallStyles.smallCard}
+        onPress={() => onSelect(item)}
+        disabled={disable}
+      >
+      {data.map((food) => (
+        <View>
+       <Image style={smallStyles.foodImageSmall} source={{ uri: food.image }} />
+        <View style={smallStyles.productInfo}>
+          <Text style={smallStyles.title}>{food.name}</Text>
+          <Text style={smallStyles.resturentTitle}>
+            {/* {category.toString().toUpperCase()} */}
+          </Text>
+          <Rating
+            style={smallStyles.rating}
+            type="heart"
+            readonly
+            ratingCount={5}
+            imageSize={20}
+          />
+        </View>
+        <View style={smallStyles.shopView}>
+          <Text style={smallStyles.productSize}>Fr{food.price}</Text>
+          {/* {data !== undefined &&
+            data.map((item) => {
+              if (item.food._id.toString() === _id.toString()) {
+                isAdded = true;
+                currentQty = item.qty;
+              }
+            })} */}
+          {canAdd && !isAdded && (
+            <AppButton
+              title="Add"
+              width={70}
+              // onPress={() => myArray.push(data.item)}
+              onTap={() => onAddToCart(data.item)}
+            />
+          )}
+
+          {isAdded && (
+            <View style={styles.countView}>
+              <ButtonAddRemove
+                title="-"
+                onTap={() => didAddRemove(item, --currentQty)}
+              />
+
+              <Text
+                h4
+                style={{ alignSelf: "center", margin: 5, fontWeight: "600" }}
+              >
+                {currentQty}
+              </Text>
+              <ButtonAddRemove
+                title="+"
+                onTap={() => didAddRemove(item, ++currentQty)}
+              />
+            </View>
+          )}
+        </View>
+      ))
+      </View>
+      ))}
+      </TouchableOpacity>
+      
+    );
+  };
+
+  switch (size) {
+    case "small": // wide card
+      return smallCard();
+    case "medium": // medium card
+      return mediumCard();
+    default:
+      return mediumCard();
+  }
 };
 
 const styles = StyleSheet.create({
-  imgIcon: {
-    width: 50,
-    height: 30,
-  },
-  searchOptions: {
+  root: {
+    flex: 1,
+    height: "100%",
     display: "flex",
-    height: 60,
-    justifyContent: "space-around",
-    flexDirection: "row",
-    alignItems: "center",
-    marginRight: 10,
-  },
-  topCategory: {
-    height: 100,
-    backgroundColor: "#CACACA",
-  },
-  choiceView: {
-    height: 40,
-    marginLeft: 10,
-    marginRight: 30,
-    borderBottomColor: "rgba(0,0,0,0.2)",
-    borderBottomWidth: 0.2,
+    flexDirection: "column",
     justifyContent: "flex-start",
+    alignItems: "center",
+    margin: 10,
   },
-  choiceText: {
-    fontWeight: "700",
-    color: "#f15b5d",
+  imageCard:{
+   width:120,
+   height:100,
+   marginRight:5,
+   backgroundColor: "#581845",
+   borderRadius: 20,
+  },
+  foodCard:{
+  display:"flex",
+  marginBottom:10,
+  marginRight:5,
+  marginLeft:10,
+  flexDirection:"row",
+   flex:1,
+   width:deviceWidth - 10,
+   justifyContent:"space-between",
+  //  marginLeft:20
+  },
+  foodImage: {
+    borderRadius: 20,
+    height: 220,
+    // width: deviceWidth - 30,
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+    backgroundColor: "#581845",
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "500",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    marginTop: 10,
+    color: "#636363",
+  },
+  countView: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 8,
   },
 });
 
-HomeScreen.navigationOptions = () => {
-  return {
-    header: null,
-    tabBarLabel: "MyHome",
-    tabBarIcon: ({ tintColor }) => (
-      <Ionicons name="md-checkmark-circle" size={32} color="green" />
-    ),
-  };
-};
+const smallStyles = StyleSheet.create({
+  smallCard: {
+    flex: 1,
+    height: 100,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    backgroundColor: "white",
+    borderColor: "#E5E5E5",
+    borderWidth: 1,
+    borderRadius: 10,
+    margin: 10,
+  },
 
-export default HomeScreen;
+  title: {
+    fontSize: 16,
+    fontWeight: "500",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  resturentTitle: {
+    fontSize: 16,
+    display: "flex",
+    color: "#565555",
+  },
+  price: {
+    fontSize: 18,
+    fontWeight: "400",
+    display: "flex",
+    color: "#EA5656",
+  },
+  foodImageSmall: {
+    borderRadius: 10,
+    marginLeft:10,
+    height: 99,
+    width: 99,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#581845",
+    alignSelf: "center",
+  },
+  rating: {
+    alignSelf: "flex-start",
+  },
+  productInfo: {
+    flex: 1,
+    padding: 5,
+    justifyContent: "space-around",
+  },
+  shopView: {
+    justifyContent: "space-around",
+    padding: 10,
+    alignItems: "center",
+  },
+  productSize: {
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#848484",
+  },
+});
+
+export default Homescreen;

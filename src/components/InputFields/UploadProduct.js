@@ -27,17 +27,17 @@ const UploadProduct = ({ onSubmit, route, linkText, title, isSignup = false }) =
     //     console.log("response", response)
     //   });
   // };
-  const handleUpload = (image) =>{
+  const handleUpload = (images) =>{
     const data = new FormData()
-    data.append('file', image)
+    data.append('file', images)
     data.append('upload_present','selling')
     data.append('cloudinary_name','andela-stackup')
-    fetch('https://api.cloudinary.com/v1_1/andela-stackup/image/upload', {
+    fetch('https://api.cloudinary.com/v1_1/andela-stackup/images/upload', {
       method:"POST",
       body:data
     }).then(res=> res.json())
     .then(data => {
-      console.log(data)
+      console.log(data.images)
     })
   };
   useEffect(() => {
